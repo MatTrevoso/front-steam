@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+:root {
+  --black-color: #000;
+  --blue-color: #01fcff;
+  --blue-color-2: #64b3f4;
+  --gray-color: #a8a8b3;
+  --gray-color-2: #989898;
+  --green-color: #00dbde;
+  --green-color-2: #c2e59c;
+  --purple-color: #fc00ff;
+  --red-color: #c02425;
+  --white-color: #fff;
+  --yellow-color: #eba417;
+  --yellow-color-2: #f7ff00;
+  --yellow-color-3: #f0cb35;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(var(--black-color), 0.3);
+  border-radius: 10px;
+}
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(
+    to bottom,
+    var(--green-color) 0%,
+    var(--yellow-color) 150%
+  );
+  border-radius: 6px;
+  opacity: 0.7;
+}
+
+h1,
+h2,
+p,
+input,
+label {
+  font-family: "Ubuntu", sans-serif;
+  color: var(--white-color);
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+p {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 22px;
+}
+input,
+label {
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+.container {
+  max-width: 80rem;
+  width: 100%;
+  padding: 0 16px;
+  margin: 0 auto;
+}
