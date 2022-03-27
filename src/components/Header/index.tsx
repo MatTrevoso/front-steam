@@ -43,9 +43,3 @@ export function Header() {
     </header>
   );
 }
-
-{
-  /* <span className="mobile-menu-icon" onClick="openSideNav()">
-<i className="fas fa-bars fa-2x"></i>
-</span> */
-}

@@ -57,9 +57,7 @@ export function LoginModal() {
       <div className="swiper swiper-banner-3">
         <div className="swiper-wrapper">
           <div className="swiper-slide">
-            <div /*  className="container" */>
-              <img src={banner4} alt="Banner-4" />
-            </div>
+            <img src={banner4} alt="Banner-4" />
           </div>
         </div>
         <div className="swiper-pagination swiper-pagination-3"></div>

@@ -16,7 +16,6 @@ export function ModalProvider({ children }: Props) {
   }, []);
 
   const openModal = useCallback(() => {
-    console.log("aaaaaaa");
     setToggleModal(true);
   }, []);
 
