@@ -3,15 +3,19 @@ import styles from "./styles.module.scss";
 import logo from "../../assets/images/lomanGames.svg";
 import { Button } from "../Button";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import ModalContext from "../../contexts/Modal";
 
 export function Header() {
+  const { openModal } = useContext(ModalContext);
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         <div className="logo">
-          <a href="/">
+          <Link to="/">
             <img src={logo} alt="Logo" />
-          </a>
+          </Link>
         </div>
         <div className="menu">
           <nav>
@@ -29,7 +33,7 @@ export function Header() {
           </nav>
         </div>
         <div className={styles["button-place"]}>
-          <Button text="Sign In" isRound={false} />
+          <Button text="Sign In" isRound={true} onClick={() => openModal()} />
         </div>
       </div>
     </header>

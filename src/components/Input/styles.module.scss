@@ -1,0 +1,17 @@
+.label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .input {
+        background: none;
+        border: 1px solid var(--white-color);
+        border-radius: 8px;
+        outline: none;
+        padding: 12px;
+      }
+}
+
+
+
+  
