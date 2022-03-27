@@ -5,8 +5,10 @@ import { Button } from "../Button";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import ModalContext from "../../contexts/Modal";
+import AuthContext from "../../contexts/Auth";
 
 export function Header() {
+  const { userIsSigned } = useContext(AuthContext);
   const { openModal } = useContext(ModalContext);
 
   return (
@@ -23,9 +25,11 @@ export function Header() {
               <li>
                 <Link to="/">Home</Link>
               </li>
-              <li>
-                <Link to="/store">My Games</Link>
-              </li>
+              {userIsSigned && (
+                <li>
+                  <Link to="/store">My Games</Link>
+                </li>
+              )}
               <li>
                 <Link to="/store">Genres</Link>
               </li>

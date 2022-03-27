@@ -2,14 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./styles.module.scss";
-
-function mergeStyle(...styles: string[]) {
-  return styles
-    .map((style) => {
-      return style + " ";
-    })
-    .join("");
-}
+import { mergeStyle } from "../../utils/mergeCss";
 
 export function Home() {
   return (

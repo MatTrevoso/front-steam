@@ -2,6 +2,8 @@
     max-width: 800px;
     max-height: 568px;
     position: relative;
+
+    z-index: 4;
   
     background-image: linear-gradient(to right, var(--purple-color) 0%, var(--blue-color) 100%);
     display: grid;

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import Modal from "react-modal";
 import ModalContext from "../../contexts/Modal";
 import { Button } from "../Button";
@@ -9,9 +9,20 @@ import banner4 from "../../assets/images/banner4.png";
 
 import styles from "./styles.module.scss";
 import { ModalCloseButton } from "../ModalCloseButton";
+import AuthContext from "../../contexts/Auth";
+
+import { toast } from "react-toastify";
 
 export function LoginModal() {
+  const { handleSignIn } = useContext(AuthContext);
   const { isModalOpen, closeModal } = useContext(ModalContext);
+
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
+    handleSignIn();
+    closeModal();
+    toast("Bem Vindo Novamente !!", { type: "success", draggable: true });
+  }, []);
 
   return (
     <Modal
@@ -25,7 +36,7 @@ export function LoginModal() {
         <div className="logo">
           <img src={lomanGames} alt="Logo" />
         </div>
-        <form action="">
+        <form onSubmit={handleSubmit} /* action="" */>
           <Input
             text="E-mail"
             htmlFor="email"
@@ -40,7 +51,7 @@ export function LoginModal() {
             name="password"
             id="password"
           />
-          <Button text="Sign in" />
+          <Button type="submit" text="Sign in" />
         </form>
       </div>
       <div className="swiper swiper-banner-3">

@@ -1,0 +1,124 @@
+.genres-banner {
+    height: 18.5rem;
+    position: relative;
+    .container {
+      position: relative;
+    }
+    .content {
+      height: 100%;
+      width: 100%;
+      padding: 32px;
+      position: absolute;
+      z-index: 2;
+    }
+    .title {
+      margin-top: 64px;
+      display: flex;
+      justify-content: center;
+    }
+    .fa-search {
+      font-size: 1.5rem;
+    }
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      color: var(--white-color);
+      background-image: linear-gradient(to right, var(--green-color) 0%, var(--yellow-color) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    button {
+      color: var(--white-color);
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      top: 42px;
+      left: 310px;
+    }
+    input {
+      background-color: var(--black-color);
+      border: 1px solid var(--white-color);
+      border-radius: 8px;
+      outline: none;
+      padding: 12px 40px;
+    }
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .games-list {
+    background-color: var(--black-color);
+    .games {
+      padding: 32px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 24px;
+    }
+    .game {
+      height: 13rem;
+      background: none;
+      padding: 4px;
+      position: relative;
+      &:hover {
+        background-image: linear-gradient(to right, var(--purple-color), 1 0%, var(--blue-color), 1 100%);
+        .data {
+          opacity: 1;
+        }
+      }
+    }
+    .data {
+      height: 100%;
+      width: 100%;
+      background-color: var(--black-color), 0.3;
+      transition: ease-in-out 0.25s;
+      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .name, .price {
+      font-family: 'Ubuntu', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white-color);
+      padding: 16px;
+    }
+    nav {
+      height: 6rem;
+      border-bottom: 1px solid var(--white-color);
+    }
+    ul {
+      height: 100%;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      span {
+        color: var(--gray-color);
+        text-decoration: none;
+        border-bottom: 3px solid transparent;
+        transition: ease-in-out 0.25s;
+        padding: 34px 4px;
+        &:hover, &:focus, &:active {
+            cursor: pointer; 
+          color: var(--white-color);
+          border-color: var(--yellow-color);
+        }
+      }
+    }
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
