@@ -1,8 +1,10 @@
 import { mergeStyle } from "../../utils/mergeCss";
 import styles from "./styles.module.scss";
 
-import CallToAction from "../../assets/images/callToAction.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
+import CallToAction from "../../assets/images/callToAction.png";
 import Game2 from "../../assets/images/game2.png";
 import Game3 from "../../assets/images/game3.png";
 import Game4 from "../../assets/images/game4.png";
@@ -13,12 +15,8 @@ export function Store() {
       <section className={styles["genres-banner"]}>
         <div className={styles.container}>
           <div className={styles.content}>
-            <form action="">
-              <input type="search" name="" id="" placeholder="Search" />
-              <button type="submit">
-                <i className="fas fa-search"></i>
-              </button>
-            </form>
+            <input type="search" name="" id="" placeholder="Search" />
+            {/*    <FontAwesomeIcon icon={faSearch} /> */}
             <div className={styles.title}>
               <h2>Aproveite Jogos Em Promoção</h2>
             </div>
@@ -71,6 +69,7 @@ export function Store() {
               </li>
             </ul>
           </nav>
+
           <div className={styles.games}>
             <a href="javacript:void(0)" /* onclick="openGameModal()" */>
               <div className={styles.game}>
@@ -82,65 +81,65 @@ export function Store() {
               </div>
             </a>
             <a href="javacript:void(0)" /* onclick="openGameModal()" */>
-              <div className="game">
+              <div className={styles.game}>
                 <img src={Game3} alt="Jogo 2" />
-                <div className="data">
-                  <span className="name">Genshin Impact</span>
-                  <span className="price">R$150,00</span>
+                <div className={styles.data}>
+                  <span className={styles.name}>Genshin Impact</span>
+                  <span className={styles.price}>R$150,00</span>
                 </div>
               </div>
             </a>
             <a href="javacript:void(0)" /* onclick="openGameModal()" */>
-              <div className="game">
+              <div className={styles.game}>
                 <img src={Game4} alt="Jogo 3" />
-                <div className="data">
-                  <span className="name">Final Fantasy XIV</span>
-                  <span className="price">R$100,00</span>
+                <div className={styles.data}>
+                  <span className={styles.name}>Final Fantasy XIV</span>
+                  <span className={styles.price}>R$100,00</span>
                 </div>
               </div>
             </a>
             <a href="javacript:void(0)" /* onclick="openGameModal()" */>
-              <div className="game">
+              <div className={styles.game}>
                 <img src={Game4} alt="Jogo 4" />
-                <div className="data">
-                  <span className="name">Pokémon</span>
-                  <span className="price">R$300,00</span>
+                <div className={styles.data}>
+                  <span className={styles.name}>Pokémon</span>
+                  <span className={styles.price}>R$300,00</span>
                 </div>
               </div>
             </a>
             <a href="javacript:void(0)" /* onclick="openGameModal()" */>
-              <div className="game">
+              <div className={styles.game}>
                 <img src={Game3} alt="Jogo 1" />
-                <div className="data">
-                  <span className="name">Gun Gale Online</span>
-                  <span className="price">R$100,00</span>
+                <div className={styles.data}>
+                  <span className={styles.name}>Gun Gale Online</span>
+                  <span className={styles.price}>R$100,00</span>
                 </div>
               </div>
             </a>
             <a href="javacript:void(0)" /* onclick="openGameModal()" */>
-              <div className="game">
+              <div className={styles.game}>
                 <img src={Game2} alt="Jogo 2" />
-                <div className="data">
-                  <span className="name">Genshin Impact</span>
-                  <span className="price">R$150,00</span>
+                <div className={styles.data}>
+                  <span className={styles.name}>Genshin Impact</span>
+                  <span className={styles.price}>R$150,00</span>
                 </div>
               </div>
             </a>
             <a href="javacript:void(0)" /* onclick="openGameModal()" */>
-              <div className="game">
+              <div className={styles.game}>
                 <img src={Game4} alt="Jogo 3" />
-                <div className="data">
-                  <span className="name">Final Fantasy XIV</span>
-                  <span className="price">R$100,00</span>
+                <div className={styles.data}>
+                  <span className={styles.name}>Final Fantasy XIV</span>
+                  <span className={styles.price}>R$100,00</span>
                 </div>
               </div>
             </a>
             <a href="javacript:void(0)" /* onclick="openGameModal()" */>
-              <div className="game">
+              <div className={styles.game}>
                 <img src={Game2} alt="Jogo 4" />
-                <div className="data">
-                  <span className="name">Pokémon</span>
-                  <span className="price">R$300,00</span>
+                <div className={styles.data}>
+                  <span className={styles.name}>Pokémon</span>
+                  <span className={styles.price}>R$300,00</span>
                 </div>
               </div>
             </a>

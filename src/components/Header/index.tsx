@@ -6,10 +6,15 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import ModalContext from "../../contexts/Modal";
 import AuthContext from "../../contexts/Auth";
+import { UserSignedButton } from "../UserSignedButton";
 
 export function Header() {
-  const { userIsSigned } = useContext(AuthContext);
+  const { userIsSigned, signOut } = useContext(AuthContext);
   const { openModal } = useContext(ModalContext);
+
+  function handleSignOut() {
+    signOut();
+  }
 
   return (
     <header className={styles.header}>
@@ -27,7 +32,7 @@ export function Header() {
               </li>
               {userIsSigned && (
                 <li>
-                  <Link to="/store">My Games</Link>
+                  <Link to="/library">My Games</Link>
                 </li>
               )}
               <li>
@@ -37,7 +42,11 @@ export function Header() {
           </nav>
         </div>
         <div className={styles["button-place"]}>
-          <Button text="Sign In" isRound={true} onClick={() => openModal()} />
+          {userIsSigned ? (
+            <UserSignedButton text="Mateus" onClick={handleSignOut} />
+          ) : (
+            <Button text="Sign In" isRound={true} onClick={() => openModal()} />
+          )}
         </div>
       </div>
     </header>

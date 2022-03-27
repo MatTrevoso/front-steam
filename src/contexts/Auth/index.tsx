@@ -12,19 +12,19 @@ export function AuthProvider({ children }: Props) {
   const [userIsSigned, setUserIsSigned] = useState(false);
   const user = "";
 
-  const handleSignIn = useCallback(() => {
+  const signIn = useCallback(() => {
     setUserIsSigned(true);
   }, []);
 
-  const handleSignOut = useCallback(() => {
+  const signOut = useCallback(() => {
     setUserIsSigned(false);
   }, []);
 
   return (
     <AuthContext.Provider
       value={{
-        handleSignIn,
-        handleSignOut,
+        signIn,
+        signOut,
         user,
         userIsSigned,
       }}
