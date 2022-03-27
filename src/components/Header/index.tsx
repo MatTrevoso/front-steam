@@ -2,10 +2,11 @@ import styles from "./styles.module.scss";
 
 import logo from "../../assets/images/lomanGames.svg";
 import { Button } from "../Button";
+import { Link } from "react-router-dom";
 
 export function Header() {
   return (
-    <header className={styles.headerContent}>
+    <header className={styles.header}>
       <div className={styles.container}>
         <div className="logo">
           <a href="/">
@@ -16,18 +17,20 @@ export function Header() {
           <nav>
             <ul>
               <li>
-                <a href="/">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="#">My Games</a>
+                <Link to="/store">My Games</Link>
               </li>
               <li>
-                <a href="#">Genres</a>
+                <Link to="/store">Genres</Link>
               </li>
             </ul>
           </nav>
         </div>
-        <Button text="Sign In" />
+        <div className={styles["button-place"]}>
+          <Button text="Sign In" isRound={false} />
+        </div>
       </div>
     </header>
   );
