@@ -14,21 +14,39 @@ import { Button } from "../Button";
 import { Input } from "../Input";
 
 import styles from "./styles.module.scss";
+import { AuthService } from "../../services/authService";
 
 export function LoginModal() {
   const { signIn } = useContext(AuthContext);
   const { isModalOpen, closeModal } = useContext(ModalContext);
 
-  const handleSubmit = useCallback((e) => {
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
-    signIn();
-    closeModal();
-    toast("Bem vindo novamente: Mateus !!", {
-      type: "success",
-      draggable: true,
-      delay: 500,
-      position: "top-left",
-    });
+    await AuthService.signIn({
+      email: "aaaaa",
+      password: "ssssss",
+    })
+      .then((res) => {
+        console.log(res);
+        signIn();
+        toast("Bem vindo novamente: Mateus !!", {
+          type: "success",
+          draggable: true,
+          delay: 500,
+          position: "top-left",
+        });
+      })
+      .catch((err) => {
+        toast(err.message, {
+          type: "success",
+          draggable: true,
+          delay: 500,
+          position: "top-left",
+        });
+      })
+      .finally(() => {
+        closeModal();
+      });
   }, []);
 
   return (
