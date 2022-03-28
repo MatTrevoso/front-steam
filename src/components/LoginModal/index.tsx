@@ -1,4 +1,4 @@
-import { useCallback, useContext } from "react";
+import { useCallback, useContext, useState } from "react";
 import Modal from "react-modal";
 
 import { toast } from "react-toastify";
@@ -13,38 +13,36 @@ import { ModalCloseButton } from "../ModalCloseButton";
 import { Button } from "../Button";
 import { Input } from "../Input";
 
+import { AuthService } from "../../services/AuthService/authService";
+
 import styles from "./styles.module.scss";
-import { AuthService } from "../../services/authService";
 
 export function LoginModal() {
   const { signIn } = useContext(AuthContext);
   const { isModalOpen, closeModal } = useContext(ModalContext);
 
+  const [isLoading, setIsloading] = useState(false);
+
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
+
+    setIsloading(true);
     await AuthService.signIn({
-      email: "aaaaa",
-      password: "ssssss",
+      email: e.target[0].value,
+      password: e.target[1].value,
     })
       .then((res) => {
-        console.log(res);
-        signIn();
-        toast("Bem vindo novamente: Mateus !!", {
-          type: "success",
-          draggable: true,
-          delay: 500,
-          position: "top-left",
-        });
+        signIn(res.data.userName);
+        toast("Bem vindo novamente", { type: "success", position: "top-left" });
       })
       .catch((err) => {
         toast(err.message, {
-          type: "success",
-          draggable: true,
-          delay: 500,
+          type: "error",
           position: "top-left",
         });
       })
       .finally(() => {
+        setIsloading(false);
         closeModal();
       });
   }, []);
@@ -67,6 +65,7 @@ export function LoginModal() {
             type="email"
             name="email"
             id="email"
+            required
           />
           <Input
             text="Password"
@@ -74,8 +73,9 @@ export function LoginModal() {
             type="password"
             name="password"
             id="password"
+            required
           />
-          <Button type="submit" text="Sign in" />
+          <Button isLoading={isLoading} type="submit" text="Sign in" />
         </form>
       </div>
       <img src={banner4} alt="Banner-4" />

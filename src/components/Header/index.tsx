@@ -9,7 +9,7 @@ import AuthContext from "../../contexts/Auth";
 import { UserSignedButton } from "../UserSignedButton";
 
 export function Header() {
-  const { userIsSigned, signOut } = useContext(AuthContext);
+  const { user, userIsSigned, signOut } = useContext(AuthContext);
   const { openModal } = useContext(ModalContext);
 
   function handleSignOut() {
@@ -43,7 +43,7 @@ export function Header() {
         </div>
         <div className={styles["button-place"]}>
           {userIsSigned ? (
-            <UserSignedButton text="Mateus" onClick={handleSignOut} />
+            <UserSignedButton text={user} onClick={handleSignOut} />
           ) : (
             <Button text="Sign In" isRound={true} onClick={() => openModal()} />
           )}

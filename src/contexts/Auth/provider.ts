@@ -1,6 +1,6 @@
 export interface Provider {
   userIsSigned: boolean;
-  user: any;
+  user: string;
   signOut: () => void;
-  signIn: () => void;
+  signIn: (user: string) => void;
 }

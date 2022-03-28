@@ -10,10 +10,11 @@ type Props = {
 
 export function AuthProvider({ children }: Props) {
   const [userIsSigned, setUserIsSigned] = useState(false);
-  const user = "";
+  const [user, setUser] = useState("");
 
-  const signIn = useCallback(() => {
+  const signIn = useCallback((user: string) => {
     setUserIsSigned(true);
+    setUser(user);
   }, []);
 
   const signOut = useCallback(() => {
