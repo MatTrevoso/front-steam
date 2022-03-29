@@ -13,9 +13,8 @@ import { ModalCloseButton } from "../ModalCloseButton";
 import { Button } from "../Button";
 import { Input } from "../Input";
 
-import { AuthService } from "../../services/AuthService/authService";
-
 import styles from "./styles.module.scss";
+import { AuthService } from "../../services/AuthService/authService";
 
 export function LoginModal() {
   const { signIn } = useContext(AuthContext);
@@ -27,7 +26,7 @@ export function LoginModal() {
     e.preventDefault();
 
     setIsloading(true);
-    await AuthService.signIn({
+    AuthService.signIn({
       email: e.target[0].value,
       password: e.target[1].value,
     })

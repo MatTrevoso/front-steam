@@ -7,8 +7,23 @@ import { mergeStyle } from "../../utils/mergeCss";
 // Import Swiper styles
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useEffect, useState } from "react";
+import { gamesService } from "../../services/GamesService/gamesService";
+import { BaseResponseDto } from "../../services/Shared/BaseResponseDto";
+import { GamesResponseDto } from "../../services/GamesService/GamesResponseDto";
 
 export function Home() {
+  const [games, setGames] = useState<BaseResponseDto<GamesResponseDto[]>>();
+  // recuperando a lista de jogos em destaque
+  useEffect(() => {
+    gamesService
+      .getGames({ page: 1, take: 2 })
+      .then((res) => {
+        setGames(res);
+      })
+      .catch((err) => {});
+  }, []);
+
   return (
     <>
       <section className={mergeStyle(styles.banner, styles["banner-1"])}>
@@ -24,61 +39,29 @@ export function Home() {
         </div>
       </section>
 
-      <Swiper
-        spaceBetween={1}
-        slidesPerView={1}
-        navigation
-        pagination={{
-          clickable: true,
-          dynamicBullets: true,
-        }}
-        scrollbar={{ draggable: true }}
-        //onSwiper={(swiper) => console.log(swiper)}
-        //onSlideChange={() => console.log("slide change")}
-      >
-        <SwiperSlide>
-          <div className={mergeStyle(styles.swiper, styles["swiper-banner-1"])}>
-            <div className={styles["swiper-slide"]}>
-              <div className={styles.container}>
-                <div className={styles.content}>
-                  <h1>
-                    The Legend Of Zelda <span>Age Of Destruction</span>
-                  </h1>
-                  <h2>R$ 200,00</h2>
-                  <p>
-                    Breath of the Wild é um jogo eletrônico de ação-aventura em
-                    mundo aberto que os jogadores podem explorar livremente
-                    enquanto controlam Link. ... O jogador pode realizar ações
-                    como correr, escalar, nadar e voar com um paraglider, porém
-                    todas são limitadas pelo fôlego de Link.
-                  </p>
-                  <a href="/#">
-                    <FontAwesomeIcon icon={faChevronCircleRight} />
-                    Participar da Aventura
-                  </a>
-                </div>
-                <div className={styles["empty-space"]}></div>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className={mergeStyle(styles.swiper, styles["swiper-banner-1"])}>
-            <div className={styles["swiper-wrapper"]}>
+      {games?.data.map((jogo) => (
+        <Swiper
+          spaceBetween={1}
+          slidesPerView={1}
+          navigation
+          pagination={{
+            clickable: true,
+            dynamicBullets: true,
+          }}
+          scrollbar={{ draggable: true }}
+          //onSwiper={(swiper) => console.log(swiper)}
+          //onSlideChange={() => console.log("slide change")}
+        >
+          <SwiperSlide>
+            <div
+              className={mergeStyle(styles.swiper, styles["swiper-banner-1"])}
+            >
               <div className={styles["swiper-slide"]}>
                 <div className={styles.container}>
                   <div className={styles.content}>
-                    <h1>
-                      The Legend Of Zelda <span>Age Of Destruction</span>
-                    </h1>
+                    <h1>{jogo.nome}</h1>
                     <h2>R$ 200,00</h2>
-                    <p>
-                      Breath of the Wild é um jogo eletrônico de ação-aventura
-                      em mundo aberto que os jogadores podem explorar livremente
-                      enquanto controlam Link. ... O jogador pode realizar ações
-                      como correr, escalar, nadar e voar com um paraglider,
-                      porém todas são limitadas pelo fôlego de Link.
-                    </p>
+                    <p>{jogo.sinopse}</p>
                     <a href="/#">
                       <FontAwesomeIcon icon={faChevronCircleRight} />
                       Participar da Aventura
@@ -88,39 +71,20 @@ export function Home() {
                 </div>
               </div>
             </div>
-          </div>
-        </SwiperSlide>
-      </Swiper>
-
-      {/*  <section className={mergeStyle(styles.banner, styles["banner-2"])}>
-        <div className={mergeStyle(styles.swiper, styles["swiper-banner-1"])}>
-          <div className={styles["swiper-wrapper"]}>
-            <div className={styles["swiper-slide"]}>
-              <div className={styles.container}>
-                <div className={styles.content}>
-                  <h1>
-                    The New World <span>Amazon Series</span>
-                  </h1>
-                  <h2>R$ 280,00</h2>
-                  <p>
-                    Breath of the Wild é um jogo eletrônico de ação-aventura em
-                    mundo aberto que os jogadores podem explorar livremente
-                    enquanto controlam Link. ... O jogador pode realizar ações
-                    como correr, escalar, nadar e voar com um paraglider, porém
-                    todas são limitadas pelo fôlego de Link.
-                  </p>
-                  <a href="#">
-                    <FontAwesomeIcon icon={faChevronCircleRight} />
-                    Participar da Aventura
-                  </a>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div
+              className={mergeStyle(styles.swiper, styles["swiper-banner-1"])}
+            >
+              <div className={styles["swiper-wrapper"]}>
+                <div className={styles["swiper-slide"]}>
+                  <div className={styles.container} />
                 </div>
-                <div className={styles["empty-space"]}></div>
               </div>
             </div>
-          </div>
-          <div className="swiper-pagination swiper-pagination-1"></div>
-        </div>
-      </section> */}
+          </SwiperSlide>
+        </Swiper>
+      ))}
     </>
   );
 }
