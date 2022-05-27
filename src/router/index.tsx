@@ -5,6 +5,7 @@ import { Layout } from "../components/Layout";
 import { ModalProvider } from "../contexts/Modal";
 import { AuthProvider } from "../contexts/Auth";
 import { UserGames } from "../pages/UserGames";
+import { CreateGame } from "../pages/CreateGame";
 
 export function Router() {
   return (
@@ -16,6 +17,7 @@ export function Router() {
               <Route path="/" element={<Home />} />
               <Route path="/store" element={<Store />} />
               <Route path="/library" element={<UserGames />} />
+              <Route path="/game/create" element={<CreateGame />} />
             </Route>
           </Routes>
         </ModalProvider>

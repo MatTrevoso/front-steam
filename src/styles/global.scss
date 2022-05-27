@@ -5,6 +5,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   overflow-x: hidden;
+
+  background-color: var(--black-color);
+
 }
 
 code {
@@ -54,6 +57,14 @@ label {
   color: var(--white-color);
   margin: 0;
   padding: 0;
+}
+
+input {
+  background-color: var(--black-color);
+  border: 1px solid var(--white-color);
+  border-radius: 8px;
+  outline: none;
+  padding: 12px 40px;
 }
 
 h1 {

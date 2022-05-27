@@ -1,20 +1,12 @@
+import { User } from "../../types/User";
 import { API } from "../api";
-import { BaseResponseDto } from "../Shared/BaseResponseDto";
-import { LoginResponseDto } from "./LoginResponseDto";
+import { SignInResponseDto } from "./SignInResponseDto";
+import { requestResolver } from "../Shared/requestResolver";
 
-type AuthRequestDto = {
-  email: string;
-  password: string;
-};
+type SignInRequestDto = Omit<User, "userName">;
 
 export const AuthService = {
-  async signIn(data: AuthRequestDto) {
-    return API.post<BaseResponseDto<LoginResponseDto>>("/api/auth", data)
-      .then((res) => {
-        return res.data;
-      })
-      .catch((err) => {
-        throw err;
-      });
+  signIn(data: SignInRequestDto) {
+    return requestResolver<SignInResponseDto>(API.post("/api/auth", data));
   },
 };

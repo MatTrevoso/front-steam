@@ -7,22 +7,13 @@ import { mergeStyle } from "../../utils/mergeCss";
 // Import Swiper styles
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useEffect, useState } from "react";
-import { gamesService } from "../../services/GamesService/gamesService";
-import { BaseResponseDto } from "../../services/Shared/BaseResponseDto";
-import { GamesResponseDto } from "../../services/GamesService/GamesResponseDto";
+import { gamesService } from "../../services/gamesService/gamesService";
+import { useQuery } from "react-query";
 
 export function Home() {
-  const [games, setGames] = useState<BaseResponseDto<GamesResponseDto[]>>();
-  // recuperando a lista de jogos em destaque
-  useEffect(() => {
-    gamesService
-      .getGames({ page: 1, take: 2 })
-      .then((res) => {
-        setGames(res);
-      })
-      .catch((err) => {});
-  }, []);
+  const { isLoading, error, data } = useQuery("jogos", () =>
+    gamesService.getGames({ page: 0, take: 3 })
+  );
 
   return (
     <>
@@ -39,52 +30,61 @@ export function Home() {
         </div>
       </section>
 
-      {games?.data.map((jogo) => (
-        <Swiper
-          spaceBetween={1}
-          slidesPerView={1}
-          navigation
-          pagination={{
-            clickable: true,
-            dynamicBullets: true,
-          }}
-          scrollbar={{ draggable: true }}
-          //onSwiper={(swiper) => console.log(swiper)}
-          //onSlideChange={() => console.log("slide change")}
-        >
-          <SwiperSlide>
-            <div
-              className={mergeStyle(styles.swiper, styles["swiper-banner-1"])}
-            >
-              <div className={styles["swiper-slide"]}>
-                <div className={styles.container}>
-                  <div className={styles.content}>
-                    <h1>{jogo.nome}</h1>
-                    <h2>R$ 200,00</h2>
-                    <p>{jogo.sinopse}</p>
-                    <a href="/#">
-                      <FontAwesomeIcon icon={faChevronCircleRight} />
-                      Participar da Aventura
-                    </a>
-                  </div>
-                  <div className={styles["empty-space"]}></div>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div
-              className={mergeStyle(styles.swiper, styles["swiper-banner-1"])}
-            >
-              <div className={styles["swiper-wrapper"]}>
+      {data?.data.map((jogo) => {
+        //console.log("fui executao", jogo.midia[0].caminho);
+        /*   const divImage = {
+          backgroundImage: "url(" + jogo.midia[0].caminho + ");",
+          // backgroundImage: "url(" + jogo.midia[0].caminho + ");",
+        }; */
+
+        return (
+          <Swiper
+            key={jogo.id}
+            spaceBetween={1}
+            slidesPerView={1}
+            navigation
+            pagination={{
+              clickable: true,
+              dynamicBullets: true,
+            }}
+            scrollbar={{ draggable: true }}
+            //onSwiper={(swiper) => console.log(swiper)}
+            //onSlideChange={() => console.log("slide change")}
+          >
+            <SwiperSlide>
+              <div
+                className={mergeStyle(styles.swiper, styles["swiper-banner-1"])}
+              >
                 <div className={styles["swiper-slide"]}>
-                  <div className={styles.container} />
+                  <div className={styles.container}>
+                    <div className={styles.content}>
+                      <h1>{jogo.nome}</h1>
+                      <h2>R$ 200,00</h2>
+                      <p>{jogo.sinopse}</p>
+                      <a href="/#">
+                        <FontAwesomeIcon icon={faChevronCircleRight} />
+                        Participar da Aventura
+                      </a>
+                    </div>
+                    <div className={styles["empty-space"]}></div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </SwiperSlide>
-        </Swiper>
-      ))}
+            </SwiperSlide>
+            <SwiperSlide>
+              <div
+                className={mergeStyle(styles.swiper, styles["swiper-banner-2"])}
+              >
+                <div className={styles["swiper-wrapper"]}>
+                  <div className={styles["swiper-slide"]}>
+                    <div className={styles.container} />
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        );
+      })}
     </>
   );
 }

@@ -1,0 +1,83 @@
+.container {
+  max-width: 80rem;
+  width: 100%;
+  padding: 32px 16px 0 16px;
+  margin: 0 auto;
+
+  .title {
+    font-size: 1.8rem;
+    background-image: linear-gradient(
+      to right,
+      var(--green-color) 0%,
+      var(--yellow-color) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .searchWrapper {
+     
+    h2 {
+      margin-bottom: 18px;
+    }
+  }
+
+  > h2 {
+    margin-bottom: 32px;
+    font-size: 1.6rem;
+  }
+
+  input {
+    margin-bottom: 32px;
+  }
+
+  section {
+    width: 100%;
+    border-top: 1px solid var(--white-color);
+    padding-top: 28px;
+  }
+
+  .gameDetails {
+    display: grid;
+    grid-template-columns: repeat( 3, 1fr);
+
+    gap: 2rem;
+
+    label:last-child {
+        grid-column: span 2;
+    }
+  
+    .checkboxWrapper {
+      display: flex;
+      flex-direction: column;
+
+      label {
+          margin-bottom: 8px;
+      }
+
+      input {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+    }
+  }
+
+
+  .gameMidia {
+  
+
+    div {
+      display: flex;
+      flex-direction: row;
+
+
+      label:first-child {
+        margin-right: 3rem;
+      }
+    }
+  }
+}
+
+.padding {
+  padding-left: 8px;
+}

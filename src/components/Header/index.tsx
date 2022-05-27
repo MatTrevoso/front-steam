@@ -38,6 +38,9 @@ export function Header() {
               <li>
                 <Link to="/store">Genres</Link>
               </li>
+              <li>
+                <Link to="/game/create">Create Game</Link>
+              </li>
             </ul>
           </nav>
         </div>

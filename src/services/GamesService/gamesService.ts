@@ -1,38 +1,22 @@
 import { API } from "../api";
-import { BaseResponseDto } from "../Shared/BaseResponseDto";
-import { GamesResponseDto } from "./GamesResponseDto";
+import { Game } from "../../types/Game";
+import { Pagining } from "../Shared/Pagining";
+import { requestResolver } from "../Shared/requestResolver";
 
-type GamesOutdoorsRequestDto = {
-  page: number;
-  take: number;
-};
-
-type GamesByGenreRequestDto = GamesOutdoorsRequestDto & {
+type GamesByGenre = Pagining & {
   genre: number;
 };
 
 export const gamesService = {
-  async getGames({ page, take }: GamesOutdoorsRequestDto) {
-    return API.get<BaseResponseDto<GamesResponseDto[]>>(
-      `/api/jogos/all?page=${page}&take=${take}`
-    )
-      .then((res) => {
-        return res.data;
-      })
-      .catch((err) => {
-        throw err;
-      });
+  GAMES: "/api/jogos/",
+  getGames({ page, take }: Pagining) {
+    return requestResolver<Game[]>(
+      API.get(`${this.GAMES}all?page=${page}&take=${take}`)
+    );
   },
-  //
-  async getGamesByGenre({ genre, page, take }: GamesByGenreRequestDto) {
-    return API.get<BaseResponseDto<GamesResponseDto>>(
-      `/api/jogos/all?page=${page}&take=${take}`
-    )
-      .then((res) => {
-        return res.data;
-      })
-      .catch((err) => {
-        throw err;
-      });
+  getGamesByGenre({ genre, page, take }: GamesByGenre) {
+    return requestResolver<Game[]>(
+      API.get(`${this.GAMES}${genre}/all?page=${page}&take=${take}`)
+    );
   },
 };

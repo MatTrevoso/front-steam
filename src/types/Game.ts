@@ -1,11 +1,6 @@
-export type Midia = {
-  id: number;
-  id_Jogo: number;
-  tipo: number;
-  caminho: string;
-};
+import { Midia } from "./Midia";
 
-export interface GamesResponseDto {
+export type Game = {
   id: number;
   id_Promocao: number;
   nome: string;
@@ -13,4 +8,4 @@ export interface GamesResponseDto {
   valor: number;
   esta_Disponivel: false;
   midia: Midia[];
-}
+};
